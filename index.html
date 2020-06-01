@@ -2,6 +2,7 @@
 <html lang="ja">
   <head>
     <meta  charset="utf-8">
+    <link rel="icon" type="image/jpg" href="img/98306.jpg">
     <title>四択!!英単語クイズ</title>
     <style>
       #Q{
@@ -39,6 +40,9 @@
         margin-left: 20px;
       }
 
+      #Number{
+        width: 90px;
+      }
     </style>
   </head>
   <body>
@@ -53,15 +57,32 @@
       <li id="A2"></li>
       <li id="A3"></li>
       <li id="A4"></li>
+      
 
     </ul>
 
-    <input type="number" min="1" max="4" value="1" placeholder="1~4まで" id="Number">
+    <select  id="Number">
+      <option value=""></option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      </select>
+    <!--<datalist id="pnumber">
+      <option value="1"></option>
+      <option value="2"></option>
+      <option value="3"></option>
+      <option value="4"></option>
+    </datalist>-->
     <input type="button" id="go"value="Go">
 
     <div id="ans"></div>
 
+
+
     <div id="yans"></div>
+
+    
     <script>
 
       const stbtn=document.getElementById('stbtn');
@@ -76,7 +97,34 @@
       const a3=document.getElementById('A3');
       const a4=document.getElementById('A4');
                       
+      number.onchange=function touch(){
 
+        var d=number.value;
+
+        console.log(d);
+
+        switch(Number(d)){
+          case 1:
+            a1.click();
+            break;
+          case 2:
+            a2.click();
+            break;
+          case 3:
+            a3.click();
+            break;
+          case 4:
+            a4.click();
+            break;
+
+            default:
+            a1.classList.remove('p');
+            a2.classList.remove('p');
+            a3.classList.remove('p');
+            a4.classList.remove('p');
+        }
+
+      }
       stbtn.onclick=function Start(){
 
         a1.classList.remove('p');
@@ -85,7 +133,7 @@
         a4.classList.remove('p');
 
         yn.innerText="";
-        number.value=1;
+        number.value="";
 
         var Eword=['accident','pain','ill','die','remind','inform','convince','warn','suspect','contract','innocent','justice','legal','prison','expose','emerge','reveal','imply','arise','generate','appetite','diet','hunger','ripe','thirst','apply','application','invent','develop','advance','minute','moment','rapid','brief','due','current','instantly','repeat','whisper','pronounce','excuse'];
 
@@ -317,6 +365,8 @@ console.log('AAA');
   a1.classList.remove('p');
 }
 }
+
+
 
         
  go.onclick=function Go(){
